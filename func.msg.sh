@@ -18,7 +18,7 @@ msg_err(){
    echo "use --set-device <DeviceID>"
    ;;
 
-  no_set_token)
+  no_set_deviceid)
    echo "Err.."
    echo "append <Plug Device ID>"
    ;;
