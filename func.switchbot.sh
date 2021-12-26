@@ -1,11 +1,6 @@
 #!/bin/bash
 
-SET_TOKEN() {
- # ${1} - Token
- echo "CFG_TOKEN=\"${1}\"" \
-  | tee "${FN_CFG_TOKEN}"
-}
-
+# show Plug devices list.
 GET_DEVICE_LIST() {
  LOAD_TOKEN
  curl -s -H "${CFG_AUTH}" ${CFG_API_DEVICES} > ${FN_TMP_JSON}
@@ -21,12 +16,27 @@ GET_DEVICE_LIST() {
  | sed -e 's/"//g'
 }
 
+# show Plug device status.
+GET_DEVICE_STATUS() {
+ LOAD_TOKEN
+ LOAD_DEVICE_ID
+}
+
+
+### Set Configration
+SET_TOKEN() {
+ # ${1} - Token
+ echo "CFG_TOKEN=\"${1}\"" \
+  | tee "${FN_CFG_TOKEN}"
+}
+
 SET_DEVICE() {
  # ${1} - DeviceID
  echo "CFG_DEVICE_ID=\"${1}\"" \
   | tee "${FN_CFG_DEVICE_ID}"
 }
 
+### Load Configuration
 LOAD_TOKEN() {
  if [ ! -f "${FN_CFG_TOKEN}" ]; then
   msg_err no_token
@@ -53,6 +63,7 @@ LOAD_DEVICE_ID() {
  fi
 }
 
+### Check Configuration
 CHECK_CONFIG() {
  LOAD_TOKEN
  LOAD_DEVICE_ID

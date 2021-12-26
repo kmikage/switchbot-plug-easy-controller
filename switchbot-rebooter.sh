@@ -34,14 +34,26 @@ case ${1} in
 
 
  *)
-  echo "--get-device-list"
-  echo "  Get Plug Devices."
-  echo "--set-device <DeviceID>"
-  echo "  Set Plug DeviceID."
-  echo "--set-token <Token>"
-  echo "  Set SwitchBot Token."
-  echo "--check-config"
-  echo "  Show configurations."
+  cat << _EOL_ 
+SwitchBot Rebooter.
+
+[ HELP ]
+--get-device-status
+  Get Plug Status.
+
+[ CONFIG ]
+--set-token <Token>
+  Set SwitchBot Token.
+
+--get-device-list
+  Get Plug Devices.
+
+--set-device <DeviceID>
+  Set Plug DeviceID.
+
+--check-config
+  Show configurations.
+_EOL_
   ;;
 esac
 
