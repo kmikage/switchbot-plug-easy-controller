@@ -28,9 +28,9 @@ SET_DEVICE_STATUS() {
 
  case ${1} in
   on)
-   CFG_API_COMMAND="'{"command": "turnOn"}" ;;
+   CFG_API_COMMAND='{"command": "turnOn"}' ;;
   off)
-   CFG_API_COMMAND="'{"command": "turnOff"}" ;;
+   CFG_API_COMMAND='{"command": "turnOff"}' ;;
   *)
    msg_err internal_err ;;
   esac
