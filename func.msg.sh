@@ -18,7 +18,6 @@ msg_err(){
    echo "Append <Token>"
    ;;
 
-
   no_set_deviceid)
    echo "Err.."
    echo "append <Plug Device ID>"
@@ -28,8 +27,21 @@ msg_err(){
    echo "Err.. Can not use API."
   ;;
 
+  cannot_api_exec)
+   echo "Err.. Can not exec API."
+  ;;
+
+  internal_err)
+   echo "Intenal Err..(No Param)"
+   echo "Please report issue on GitHub."
+   echo "https://github.com/kmikage/switchbot-rebooter/issues"
+   ;;
+
   *)
-   echo "switchbot-rebooter dev ver." ;;
+   echo "Intenal Err..(Exception)"
+   echo "Please report issue on GitHub."
+   echo "https://github.com/kmikage/switchbot-rebooter/issues"
+   ;;
  esac
 
  exit 1

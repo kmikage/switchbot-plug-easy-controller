@@ -16,6 +16,42 @@ GET_DEVICE_STATUS() {
   | jq 
 }
 
+SET_DEVICE_STATUS() {
+ # $1 - on ,off
+ if [ "$1" = ""]; then
+  msg_err internal_err
+ fi
+
+ LOAD_TOKEN
+ LOAD_DEVICE_ID
+ CFG_API_DEVICE_COMMAND="${CFG_API}/devices/${CFG_DEVICE_ID}/commands"
+
+ case ${1} in
+  on)
+   CFG_API_COMMAND="'{"command": "turnOn"}" ;;
+  off)
+   CFG_API_COMMAND="'{"command": "turnOff"}" ;;
+  *)
+   msg_err internal_err ;;
+  esac
+
+ curl -s \
+  -H "${CFG_AUTH}" \
+  -H "Content-Type: application/json" \
+  -X POST -d "${CFG_API_COMMAND}" \
+  ${CFG_API_DEVICE_STATUS} \
+  > ${FN_TMP_JSON}
+
+ MSG=`cat ${FN_TMP_JSON} \
+  | jq -r '. | [ .message ] | @csv' \
+  | sed -e 's/"//g' \
+ `
+ if [ "${MSG}" != "success" ]; then
+  echo "Result : ${MSG}"
+  msg_err cannot_api_exec
+ fi
+}
+
 # show Plug devices list.
 GET_DEVICE_LIST() {
  LOAD_TOKEN
@@ -25,6 +61,7 @@ GET_DEVICE_LIST() {
   -H "Content-Type: application/json" \
   ${CFG_API_DEVICES} \
   > ${FN_TMP_JSON}
+
  MSG=`cat ${FN_TMP_JSON} \
   | jq -r '. | [ .message ] | @csv' \
   | sed -e 's/"//g' \
