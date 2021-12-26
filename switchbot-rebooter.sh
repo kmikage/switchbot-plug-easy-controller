@@ -28,6 +28,10 @@ case ${1} in
    msg_err no_set_token
   fi
   SET_TOKEN ${2};;
+ 
+--check-config)
+  CHECK_CONFIG;;
+
 
  *)
   echo "--get-device-list"
@@ -36,6 +40,8 @@ case ${1} in
   echo "  Set Plug DeviceID."
   echo "--set-token <Token>"
   echo "  Set SwitchBot Token."
+  echo "--check-config"
+  echo "  Show configurations."
   ;;
 esac
 

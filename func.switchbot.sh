@@ -53,3 +53,10 @@ LOAD_DEVICE_ID() {
  fi
 }
 
+CHECK_CONFIG() {
+ LOAD_TOKEN
+ LOAD_DEVICE_ID
+ echo "TOKEN: ${CFG_TOKEN}"
+ echo "DEVICE_ID: ${CFG_DEVICE_ID}"
+}
+
