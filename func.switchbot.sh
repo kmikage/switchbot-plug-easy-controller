@@ -18,7 +18,7 @@ GET_DEVICE_STATUS() {
 
 SET_DEVICE_STATUS() {
  # $1 - on ,off
- if [ "$1" = ""]; then
+ if [ "${1}" = ""]; then
   msg_err internal_err
  fi
 
@@ -39,7 +39,7 @@ SET_DEVICE_STATUS() {
   -H "${CFG_AUTH}" \
   -H "Content-Type: application/json" \
   -X POST -d "${CFG_API_COMMAND}" \
-  ${CFG_API_DEVICE_STATUS} \
+  ${CFG_API_DEVICE_COMMAND} \
   > ${FN_TMP_JSON}
 
  MSG=`cat ${FN_TMP_JSON} \
