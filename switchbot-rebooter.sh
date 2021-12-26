@@ -14,6 +14,9 @@ FN_TMP_JSON=$(mktemp)
 
 case ${1} in
 
+ --set-device-status)
+  SET_DEVICE_STATUS ${1};;
+
  --get-device-status)
   GET_DEVICE_STATUS;;
 
@@ -43,6 +46,9 @@ SwitchBot Rebooter. ${CFG_VERSION}
 [ Usage ]
 --get-device-status
   Show Plug Status.
+
+--set-device-status [on|off]
+  Set Plug Status.
 
 [ Config ]
 --set-token <Token>
