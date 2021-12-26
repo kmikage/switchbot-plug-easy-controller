@@ -4,7 +4,7 @@
 # Configration
 CFG_API_DEVICES="https://api.switch-bot.com/v1.0/devices"
 FN_CFG_TOKEN="config.token.sh"
-FN_CFG_DEVICEID="config.deviceid.sh"
+FN_CFG_DEVICE_ID="config.deviceid.sh"
 FN_TMP_JSON=$(mktemp)
 
 
@@ -30,7 +30,7 @@ case ${1} in
   SET_TOKEN ${2};;
 
  *)
-  echo "--device-list"
+  echo "--get-device-list"
   echo "  Get Plug Devices."
   echo "--set-device <DeviceID>"
   echo "  Set Plug DeviceID."
