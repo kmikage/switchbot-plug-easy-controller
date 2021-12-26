@@ -39,13 +39,13 @@ msg_err(){
   internal_err)
    echo "Intenal Err..(No Param)"
    echo "Please report issue on GitHub."
-   echo "https://github.com/kmikage/switchbot-rebooter/issues"
+   echo "${CFG_GITHUB}/issues"
    ;;
 
   *)
    echo "Intenal Err..(Exception)"
    echo "Please report issue on GitHub."
-   echo "https://github.com/kmikage/switchbot-rebooter/issues"
+   echo "${CFG_GITHUB}/issues"
    ;;
  esac
 

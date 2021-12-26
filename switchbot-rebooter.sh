@@ -4,6 +4,7 @@
 # Configration
 CFG_VERSION="Dev"
 CFG_API="https://api.switch-bot.com/v1.0"
+CFG_GITHUB="https://github.com/kmikage/switchbot-rebooter"
 FN_CFG_TOKEN="config.token.sh"
 FN_CFG_DEVICE_ID="config.deviceid.sh"
 FN_TMP_JSON=$(mktemp)
@@ -13,6 +14,15 @@ FN_TMP_JSON=$(mktemp)
 . func.switchbot.sh
 
 case ${1} in
+
+ on)
+  SET_DEVICE_STATUS on;;
+
+ off)
+  SET_DEVICE_STATUS off;;
+
+ status)
+  GET_DEVICE_STATUS;;
 
  --set-device-status)
   if [ "${2}" != "on" -a "${2}" != "off" ]; then
@@ -45,8 +55,12 @@ case ${1} in
  *)
   cat << _EOL_ 
 SwitchBot Rebooter. ${CFG_VERSION}
+ - SwitchBot Plus Controller
 
 [ Usage ]
+switchbot-rebooter [ on | off | status ]
+
+[ Options ]
 --get-device-status
   Show Plug Status.
 
@@ -67,7 +81,7 @@ SwitchBot Rebooter. ${CFG_VERSION}
   Show current configurations.
 
 [ GitHub ]
-https://github.com/kmikage/switchbot-rebooter
+${CFG_GITHUB}
 _EOL_
   ;;
 esac
