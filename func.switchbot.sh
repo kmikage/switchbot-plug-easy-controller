@@ -12,8 +12,17 @@ GET_DEVICE_STATUS() {
   ${CFG_API_DEVICE_STATUS} \
   > ${FN_TMP_JSON}
 
+ MSG=`cat ${FN_TMP_JSON} \
+  | jq -r '. | [ .message ] | @csv' \
+  | sed -e 's/"//g' \
+ `
+ if [ "${MSG}" != "success" ]; then
+  echo "Result : ${MSG}"
+  msg_err cannot_api_exec
+ fi
+
  cat ${FN_TMP_JSON} \
-  | jq 
+  | jq -r '.body.power'
 }
 
 SET_DEVICE_STATUS() {
