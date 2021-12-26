@@ -18,9 +18,6 @@ GET_DEVICE_STATUS() {
 
 SET_DEVICE_STATUS() {
  # $1 - on ,off
- if [ "${1}" = ""]; then
-  msg_err internal_err
- fi
 
  LOAD_TOKEN
  LOAD_DEVICE_ID
