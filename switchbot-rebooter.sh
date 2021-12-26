@@ -15,7 +15,10 @@ FN_TMP_JSON=$(mktemp)
 case ${1} in
 
  --set-device-status)
-  SET_DEVICE_STATUS ${1};;
+  if [ "${2}" != "on" -a "${2}" != "off" ]; then
+   msg_err no_param_status
+  fi
+  SET_DEVICE_STATUS ${2};;
 
  --get-device-status)
   GET_DEVICE_STATUS;;

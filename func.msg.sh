@@ -31,6 +31,11 @@ msg_err(){
    echo "Err.. Can not exec API."
   ;;
 
+  no_param_status)
+   echo "Err.. Unexpected parameter."
+   echo "Show help."
+  ;;
+
   internal_err)
    echo "Intenal Err..(No Param)"
    echo "Please report issue on GitHub."
