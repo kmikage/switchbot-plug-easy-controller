@@ -6,7 +6,6 @@ SET_TOKEN() {
   | tee "${FN_CFG_TOKEN}"
 }
 
-
 GET_DEVICE_LIST() {
  LOAD_TOKEN
  curl -s -H "${CFG_AUTH}" ${CFG_API_DEVICES} > ${FN_TMP_JSON}
@@ -25,20 +24,32 @@ GET_DEVICE_LIST() {
 SET_DEVICE() {
  # ${1} - DeviceID
  echo "CFG_DEVICE_ID=\"${1}\"" \
-  | tee "${FN_CFG_DEVICEID}"
+  | tee "${FN_CFG_DEVICE_ID}"
 }
 
 LOAD_TOKEN() {
-if [ ! -f "${FN_CFG_TOKEN}" ]; then
- msg_err no_token
-else
- . ${FN_CFG_TOKEN}
-fi
+ if [ ! -f "${FN_CFG_TOKEN}" ]; then
+  msg_err no_token
+ else
+  . ${FN_CFG_TOKEN}
+ fi
 
-if [ "${CFG_TOKEN}" = "" ]; then
- msg_err no_token
-fi
+ if [ "${CFG_TOKEN}" = "" ]; then
+  msg_err no_token
+ fi
 
-CFG_AUTH="Authorization:${CFG_TOKEN}"
+ CFG_AUTH="Authorization:${CFG_TOKEN}"
+}
+
+LOAD_DEVICE_ID() {
+ if [ ! -f "${FN_CFG_DEVICE_ID}" ]; then
+  msg_err no_device_id
+ else
+  . ${FN_CFG_DEVICE_ID}
+ fi
+
+ if [ "${CFG_DEVICE_ID}" = "" ]; then
+  msg_err no_device_id
+ fi
 }
 

@@ -8,15 +8,16 @@ msg_err(){
    echo "use --set-token <Token>"
    ;;
 
+  no_device_id)
+   echo "Err.. no configure Switchbot Plug ID"
+   echo "use --set-device <DeviceID>"
+   ;;
+
   no_set_token)
    echo "Err.."
    echo "Append <Token>"
    ;;
 
-  no_deviceid)
-   echo "Err.. no configure Switchbot Plug ID"
-   echo "use --set-device <DeviceID>"
-   ;;
 
   no_set_deviceid)
    echo "Err.."
