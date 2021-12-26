@@ -9,7 +9,7 @@ GET_DEVICE_STATUS() {
  curl -s \
   -H "${CFG_AUTH}" \
   -H "Content-Type: application/json" \
-  ${CFG_API_DEVICES} \
+  ${CFG_API_DEVICE_STATUS} \
   > ${FN_TMP_JSON}
 
  cat ${FN_TMP_JSON} \
