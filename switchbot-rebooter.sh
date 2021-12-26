@@ -2,7 +2,7 @@
 
 
 # Configration
-CFG_API_DEVICES="https://api.switch-bot.com/v1.0/devices"
+CFG_API="https://api.switch-bot.com/v1.0"
 FN_CFG_TOKEN="config.token.sh"
 FN_CFG_DEVICE_ID="config.deviceid.sh"
 FN_TMP_JSON=$(mktemp)
@@ -13,6 +13,9 @@ FN_TMP_JSON=$(mktemp)
 . func.switchbot.sh
 
 case ${1} in
+
+ --get-device-status)
+  GET_DEVICE_STATUS;;
 
  --get-device-list)
   GET_DEVICE_LIST;;
@@ -39,17 +42,17 @@ SwitchBot Rebooter.
 
 [ HELP ]
 --get-device-status
-  Get Plug Status.
+  Show Plug Status.
 
 [ CONFIG ]
 --set-token <Token>
   Set SwitchBot Token.
 
 --get-device-list
-  Get Plug Devices.
+  Get your Plug Devices.
 
 --set-device <DeviceID>
-  Set Plug DeviceID.
+  Set your Plug DeviceID.
 
 --check-config
   Show configurations.

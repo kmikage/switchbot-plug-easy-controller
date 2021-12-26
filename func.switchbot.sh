@@ -1,9 +1,30 @@
 #!/bin/bash
 
+# show Plug device status.
+GET_DEVICE_STATUS() {
+ LOAD_TOKEN
+ LOAD_DEVICE_ID
+ CFG_API_DEVICE_STATUS="${CFG_API}/devices/${CFG_DEVICE_ID}/status"
+
+ curl -s \
+  -H "${CFG_AUTH}" \
+  -H "Content-Type: application/json" \
+  ${CFG_API_DEVICES} \
+  > ${FN_TMP_JSON}
+
+ cat ${FN_TMP_JSON} \
+  | jq 
+}
+
 # show Plug devices list.
 GET_DEVICE_LIST() {
  LOAD_TOKEN
- curl -s -H "${CFG_AUTH}" ${CFG_API_DEVICES} > ${FN_TMP_JSON}
+ CFG_API_DEVICES="${CFG_API}/devices"
+ curl -s \
+  -H "${CFG_AUTH}" \
+  -H "Content-Type: application/json" \
+  ${CFG_API_DEVICES} \
+  > ${FN_TMP_JSON}
  MSG=`cat ${FN_TMP_JSON} \
   | jq -r '. | [ .message ] | @csv' \
   | sed -e 's/"//g' \
@@ -15,13 +36,6 @@ GET_DEVICE_LIST() {
  jq -r '.body.deviceList[] | select (.deviceType == "Plug") | [ .deviceId, .deviceName ] | @csv' ${FN_TMP_JSON} \
  | sed -e 's/"//g'
 }
-
-# show Plug device status.
-GET_DEVICE_STATUS() {
- LOAD_TOKEN
- LOAD_DEVICE_ID
-}
-
 
 ### Set Configration
 SET_TOKEN() {
