@@ -2,11 +2,11 @@
 
 
 # Configration
+CFG_VERSION="Dev"
 CFG_API="https://api.switch-bot.com/v1.0"
 FN_CFG_TOKEN="config.token.sh"
 FN_CFG_DEVICE_ID="config.deviceid.sh"
 FN_TMP_JSON=$(mktemp)
-
 
 # Include Functions
 . func.msg.sh
@@ -38,13 +38,13 @@ case ${1} in
 
  *)
   cat << _EOL_ 
-SwitchBot Rebooter.
+SwitchBot Rebooter. ${CFG_VERSION}
 
-[ HELP ]
+[ Usage ]
 --get-device-status
   Show Plug Status.
 
-[ CONFIG ]
+[ Config ]
 --set-token <Token>
   Set SwitchBot Token.
 
@@ -55,7 +55,10 @@ SwitchBot Rebooter.
   Set your Plug DeviceID.
 
 --check-config
-  Show configurations.
+  Show current configurations.
+
+[ GitHub ]
+https://github.com/kmikage/switchbot-rebooter
 _EOL_
   ;;
 esac
